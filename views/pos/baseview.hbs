@@ -1,0 +1,78 @@
+<div class="container body-content">
+
+    <div class="col-sm-3">
+        <h2>Services:</h2>
+        {{#each singleVisit}}
+            <div class="row">
+                <a onclick="addToList('{{this.name}}','{{this.price}}')" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{this.name}}</h4>
+                    <p class="list-group-item-text">{{this.price}} лв</p>
+                </a>
+
+            </div>
+
+
+        {{/each}}
+    </div>
+
+    <div class="row col-sm-3 col-sm-offset-1">
+        <h2>Ordered items:</h2>
+        <table class="table" id="shopList">
+            <thead>
+            <tr>
+                <th>Service</th>
+                <th>Price</th>
+                <th>Qty</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row col-sm-3 col-sm-offset-1">
+        <h2>Customer:</h2>
+    </div>
+<script>
+    function addToList(name, price) {
+
+        var x = document.getElementById("shopList").insertRow(1);
+        var y = x.insertCell(0)
+        var z = x.insertCell(1)
+        var q = x.insertCell(2)
+
+
+        if (isUnique(name)[0]) {
+            y.innerHTML = name
+            z.innerHTML = price
+            q.innerHTML = "1"
+        } else {
+            let itemQuantity = document.getElementById("shopList").rows[isUnique(name)[1]].cells[2]
+            itemQuantity.innerHTML = String(Number(itemQuantity.innerHTML) + 1)
+        }
+
+
+        function isUnique(name) {
+            let rowsCount = document.getElementById("shopList").rows.length
+            let isUniqueName = [true, 0]
+            for (let i = 0; i < rowsCount; i++) {
+                if (name == document.getElementById("shopList").rows[i].cells[0].innerHTML)
+                    isUniqueName = [false, i]
+
+            }
+
+            return isUniqueName
+        }
+    }
+
+</script>
+
+</div>
+
+
+
+
