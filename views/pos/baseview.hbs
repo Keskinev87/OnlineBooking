@@ -26,47 +26,74 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
+
             </tbody>
         </table>
+       <div class = "pull-left col-md-6"> Total:<p id="totalSum">0</p></div>
+        <button type="button" class="btn btn-success col-md-6" onclick="reportSale()">Sell</button>
+
+
     </div>
-    <div class="row col-sm-3 col-sm-offset-1">
-        <h2>Customer:</h2>
-    </div>
+
 <script>
     function addToList(name, price) {
+        let rowsCount = document.getElementById("shopList").rows.length
 
-        var x = document.getElementById("shopList").insertRow(1);
-        var y = x.insertCell(0)
-        var z = x.insertCell(1)
-        var q = x.insertCell(2)
+        let isUnique = true
+        for (let i = 0; i < rowsCount; i++) {
+            if (name == document.getElementById("shopList").rows[i].cells[0].innerHTML) {
+                let itemQuantity = document.getElementById("shopList").rows[i].cells[2]
+                itemQuantity.innerHTML = String(Number(itemQuantity.innerHTML) + 1)
+                isUnique = false
 
-
-        if (isUnique(name)[0]) {
-            y.innerHTML = name
-            z.innerHTML = price
-            q.innerHTML = "1"
-        } else {
-            let itemQuantity = document.getElementById("shopList").rows[isUnique(name)[1]].cells[2]
-            itemQuantity.innerHTML = String(Number(itemQuantity.innerHTML) + 1)
-        }
-
-
-        function isUnique(name) {
-            let rowsCount = document.getElementById("shopList").rows.length
-            let isUniqueName = [true, 0]
-            for (let i = 0; i < rowsCount; i++) {
-                if (name == document.getElementById("shopList").rows[i].cells[0].innerHTML)
-                    isUniqueName = [false, i]
-
+                break
             }
-
-            return isUniqueName
         }
+        if (isUnique){
+                let x = document.getElementById("shopList").insertRow(1);
+                let y = x.insertCell(0)
+                let z = x.insertCell(1)
+                let q = x.insertCell(2)
+
+                y.innerHTML = name
+                z.innerHTML = price
+                q.innerHTML = "1"
+
+
+        }
+
+        var total = document.getElementById("totalSum")
+
+
+        total.innerHTML = String(Number(total.innerHTML) +  Number(price))
+    }
+
+    function reportSale() {
+        let form = document.createElement("form")
+        form.method = "POST"
+        form.action = "/pos/sell"
+
+        let transactionPrice = document.createElement("input")
+        let user = document.createElement("input")
+        let date = document.createElement("input")
+
+        transactionPrice.value = Number(document.getElementById("totalSum").innerHTML)
+        transactionPrice.name = "price"
+
+        user.value = "{{user.id}}"
+        user.name = "user"
+
+        date.value = Date()
+        date.name = "date"
+
+        form.appendChild(transactionPrice)
+        form.appendChild(user)
+        form.appendChild(date)
+
+        document.body.appendChild(form);
+
+        form.submit();
+
     }
 
 </script>

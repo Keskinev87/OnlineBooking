@@ -12,8 +12,28 @@ const Transaction = Mongoose.model('Transaction')
 
 module.exports = {
     initialView: (req, res) => {
+        if (!req.isAuthenticated()){
+            let returnUrl = '/pos/initialview';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
         singleVisit.find({}).then(singleVisit => {
             res.render('pos/baseview', {singleVisit: singleVisit})
         })
+    },
+    reportTransaction: (req, res) => {
+        if(!req.isAuthenticated()) {
+            let returnUrl = '/pos/initialview';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
+
+        let transactionArgs = req.body;
+
+        Transaction.create(transactionArgs).then(res.redirect('/pos/initialview'))
     }
 }

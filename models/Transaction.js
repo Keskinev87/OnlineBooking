@@ -6,12 +6,8 @@ const Schema = mongoose.Schema
 
 let transactionSchema = mongoose.Schema(
     {
-        type: {type: String, required: true},
         price: {type: Number, required: true},
-        paymentType: {type: String, required: true},
         date: {type: String, required: true},
-        discount: {type: String, required: false},
-        customer: {type: Schema.Types.ObjectId, ref: 'Customer', required: false},
         user: {type: Schema.Types.ObjectId, ref: 'User', required: true}
     }
 );
