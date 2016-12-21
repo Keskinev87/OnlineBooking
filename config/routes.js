@@ -23,5 +23,6 @@ module.exports = (app) => {
     app.post('/singleVisits/create', singleVisitsController.createPost)
     app.get('/pos/initialview', posController.initialView)
     app.post('/pos/sell', posController.reportTransaction)
+    app.get('/user/details/:id', userController.details)
 };
 

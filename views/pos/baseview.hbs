@@ -15,7 +15,7 @@
         {{/each}}
     </div>
 
-    <div class="row col-sm-3 col-sm-offset-1">
+    <div class="row col-sm-5 col-sm-offset-1">
         <h2>Ordered items:</h2>
         <table class="table" id="shopList">
             <thead>
@@ -33,6 +33,10 @@
         <button type="button" class="btn btn-success col-md-6" onclick="reportSale()">Sell</button>
 
 
+    </div>
+
+    <div class="alert alert-success col-md-3 col-md-offset-2 hidden" id="saleAlert">
+        <strong>Sale was reported successfully!</strong>
     </div>
 
 <script>
@@ -70,6 +74,7 @@
 
     function reportSale() {
         let form = document.createElement("form")
+        form.style.visibility= "hidden"
         form.method = "POST"
         form.action = "/pos/sell"
 
@@ -83,7 +88,7 @@
         user.value = "{{user.id}}"
         user.name = "user"
 
-        date.value = Date()
+        date.value = new Date()
         date.name = "date"
 
         form.appendChild(transactionPrice)
@@ -92,7 +97,20 @@
 
         document.body.appendChild(form);
 
-        form.submit();
+        waitForElement($('#saleAlert').fadeIn(1000).removeClass('hidden').fadeOut(1000),function(){
+            form.submit()
+        })
+
+
+        function waitForElement(elementPath, callBack){
+            window.setTimeout(function(){
+                if($(elementPath).length){
+                    callBack(elementPath, $(elementPath));
+                }else{
+                    waitForElement(elementPath, callBack);
+                }
+            },2000)
+        }
 
     }
 
