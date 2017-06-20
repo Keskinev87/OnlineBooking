@@ -6,8 +6,16 @@ const Customer = Mongoose.model('Customer')
 
 module.exports = {
     viewall: (req,res) => {
-        Customer.find({}).then(customers => {
+        let findId = req.user.companyId;
+        Customer.find({ companyId : findId}).then(customers => {
             res.render('customers/viewall', {customers: customers})
+        })
+    },
+    findGet: (req,res) => {
+      let findNumber = req.query.id
+        console.log(req.query.id)
+        Customer.findOne({code: findNumber}).then(customer => {
+            res.send(customer)
         })
     },
     createGet: (req, res) => {
@@ -31,6 +39,9 @@ module.exports = {
         }
 
         let customerArgs = req.body;
+        customerArgs.userId = req.user.id;
+        customerArgs.companyId = req.user.companyId;
+
 
         let errorMsg = '';
         if (!customerArgs.firstName){
@@ -47,6 +58,7 @@ module.exports = {
         }
 
         Customer.create(customerArgs).then(res.redirect('/customers/all'))
+
     },
 
     details: (req, res) => {

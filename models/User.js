@@ -3,9 +3,11 @@ const encryption = require('./../utilities/encryption');
 
 let userSchema = mongoose.Schema(
     {
+        companyId: {type:mongoose.Schema.Types.ObjectId, required: true, ref: 'Company'},
         email: {type: String, required: true, unique: true},
         passwordHash: {type: String, required: true},
         fullName: {type: String, required: true},
+        singleVisits: {type:[mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true}
     }
 );

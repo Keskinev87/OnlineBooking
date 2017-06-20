@@ -1,6 +1,7 @@
 const User = require('mongoose').model('User');
 const encryption = require('./../utilities/encryption');
-
+//TODO: "Creating a company should automatically create a default user and assign company ID. After that only the user can create
+//TODO: new users and they get the companyId from the initial User.
 module.exports = {
     registerGet: (req, res) => {
         res.render('user/register');

@@ -6,7 +6,7 @@
  */
 const Mongoose = require('mongoose')
 const Customer = Mongoose.model('Customer')
-const singleVisit = Mongoose.model('SingleVisit')
+const groupVisit = Mongoose.model('GroupVisit')
 const Transaction = Mongoose.model('Transaction')
 
 
@@ -19,8 +19,9 @@ module.exports = {
             res.redirect('/user/login');
             return;
         }
-        singleVisit.find({}).then(singleVisit => {
-            res.render('pos/baseview', {singleVisit: singleVisit})
+        let findId = req.user.companyId;
+        groupVisit.find({companyId : findId}).then(groupVisit => {
+            res.render('pos/baseview', {groupVisit: groupVisit})
         })
     },
     reportTransaction: (req, res) => {
@@ -33,6 +34,8 @@ module.exports = {
         }
 
         let transactionArgs = req.body;
+        transactionArgs.userId = req.user.id;
+        transactionArgs.companyId = req.user.companyId;
 
         Transaction.create(transactionArgs).then(res.redirect('/pos/initialview'))
     }

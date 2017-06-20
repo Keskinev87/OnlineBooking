@@ -1,0 +1,24 @@
+<div class="container body-content">
+    <div class="row margin-bottom-lg">
+        <div class="col-md-1">
+            <a class="btn btn-default btn-s" href="/waivers/create">Create New</a>
+        </div>
+    </div>
+</div>
+<div class="list-group">
+    {{#each waivers}}
+        <div class="container body-content">
+            <div class="row margin-bottom-lg">
+                <a href="/waivers/details/{{this.id}}" class="list-group-item">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <a href="/singleVisits/details/{{this.name}}" class="list-group-item">
+                                <h4 class="list-group-item-heading">Name: {{this.language}}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {{/each}}
+</div>

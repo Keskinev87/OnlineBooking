@@ -14,10 +14,17 @@ module.exports = (config) => {
         console.log('MongoDB ready!')
     });
 
-    require('./../models/User');
+    require('./../models/User')
     require('./../models/Customer')
-    require('./../models/SingleVisit')
+    require('./../models/Session')
+    require('./../models/GroupVisit')
     require('./../models/Transaction')
+    require('./../models/Membership')
+    require('./../models/Company')
+    require('./../models/OnlineBooking')
+
+
+
 };
 
 

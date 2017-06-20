@@ -1,0 +1,14 @@
+{{#if user}}
+    <div class="alert alert-success col-md-3 col-md-offset-4 text-center" id="overview" onload="appear()">
+        Hello {{user.fullName}}
+        You have {{salesCount}} sales for total of {{total}} лв
+    </div>
+
+
+{{/if}}
+{{#unless user}}
+<div class="alert alert-danger col-md-3 col-md-offset-4 text-center">
+   <p class="center">Please login or register to work with the system!</p>
+</div>
+{{/unless}}
+

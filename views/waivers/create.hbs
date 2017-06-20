@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#section1">Section 1</a></li>
+                    <li><a href="#section2">Section 2</a></li>
+                    <li><a href="#section3">Section 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<h2>Create new Waiver</h2>
+<form class="form-horizontal" method="POST" action="/waivers/create">
+    <fieldset>
+        <legend id="section1">Fields</legend>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="name">Name</label>
+            <div class="col-sm-2 ">
+                <input type="text" class="form-control" id="name" placeholder="Name" name="waiverName" required >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="language">Language - TODO: insert language picker here</label>
+            <div class="col-sm-2 ">
+                <input type="text" class="form-control" id="language" placeholder="Language" name="waiverLanguage" required >
+            </div>
+        </div>
+
+
+        <legend id="section2">Areas</legend>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="header">Header</label>
+            <div class="col-sm-2 ">
+                <input type="text" class="form-control" id="header" placeholder="Insert the header of your waiver here" name="waiverHeader" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="textArea">Text</label>
+            <div class="col-sm-4 ">
+                <textarea class="form-control" rows="6" id="waiverBody" placeholder="Paste the text of your waiver here" name="waiverBody"></textarea>
+            </div>
+        </div>
+
+        <legend id="section3">Fields</legend>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="header">Header</label>
+            <div class="col-sm-2 ">
+                <input type="text" class="form-control" id="header" placeholder="Insert the header of your waiver here" name="waiverHeader" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-1">
+
+                <button type="reset" class="btn btn-default">Cancel</button>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>
