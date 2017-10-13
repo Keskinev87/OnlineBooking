@@ -14,6 +14,7 @@ module.exports = (config) => {
         console.log('MongoDB ready!')
     });
 
+    require('./../models/OnlineBooking')
     require('./../models/User')
     require('./../models/Customer')
     require('./../models/Session')
@@ -21,7 +22,8 @@ module.exports = (config) => {
     require('./../models/Transaction')
     require('./../models/Membership')
     require('./../models/Company')
-    require('./../models/OnlineBooking')
+    
+    
 
 
 

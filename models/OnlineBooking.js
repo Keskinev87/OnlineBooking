@@ -3,7 +3,6 @@
  */
 const mongoose = require('mongoose');
 
-
 let onlineBookingSchema = mongoose.Schema (
     {
         companyID: {type: String, required: true},

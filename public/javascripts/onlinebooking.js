@@ -13,8 +13,8 @@ function sessionModal(session) {
     let heading = $("<h4></h4>").text(session.title)
     let modalBody = $("<div></div>").addClass("modal-body")
 
-    let price = $("<p></p>").text(session.price)
-    let duration = $("<p></p>").text(session.duration)
+    let price = $("<p></p>").text("Price: " + session.price)
+    let duration = $("<p></p>").text("Duration: " + session.duration)
 
     let maximumCapacity = []
     for(let i=1; i<= session.maximumCapacity; i++){
